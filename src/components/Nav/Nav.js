@@ -6,6 +6,7 @@ export default function Nav() {
     const currentPage = useRouteMatch().path
     const showWorkspace = () => !currentPage.includes('workspace')
     const showProjects = () => !currentPage.includes('projects')
+    const showOptions = () => !currentPage.includes('options')
     const showUsers = () => !currentPage.includes('user-management') && TokenService.isAdmin()
     const handleLogoutClick = () => {
     }
@@ -42,10 +43,15 @@ export default function Nav() {
             <Link to='/projects'>
                 Projects
             </Link>}
+
+            {showOptions() && 
+            <Link to='/options'>
+                Options
+            </Link>}
             
             {showUsers() && 
-            <Link to='/projects'>
-                Users
+            <Link to='/user-management'>
+                User Management
             </Link>}
             
             {TokenService.hasAuthToken()
