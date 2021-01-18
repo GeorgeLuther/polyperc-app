@@ -1,0 +1,32 @@
+#sort-btn {
+    width: 18px;
+    height: 20px;
+}
+
+.sort-column {
+    position: absolute;;
+    margin-top: -16px;
+    left: 28px;
+} 
+#sort-selected {
+    color:#ffc655;
+    margin: 0;
+    background:none;
+    border: none;
+}
+.sort-options {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    margin-top: 4px;
+    background-image: url('../../../../../assets/noisy-texture.png'), linear-gradient(180deg, rgb(10, 10, 10), rgb(31, 31, 31));
+}
+.sort-options button {
+    color:#ffc655;
+    background: none;
+    border: none;
+    padding:6px 0;
+}
+.sort-options button:hover {
+    background-color:rgb(10, 10, 10);
+}

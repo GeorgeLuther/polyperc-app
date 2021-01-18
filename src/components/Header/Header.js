@@ -1,31 +1,42 @@
 import React from 'react'
-import { useRouteMatch, useParams } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Header.css'
-import Nav from '../Nav/Nav'
-import SearchBar from '../SearchBar/SearchBar'
-import ControlPanel from '../ControlPanel/ControlPanel'
+import Nav from './Nav/Nav'
+import ControlPanel from './ControlPanel/ControlPanel'
 
-export default function Header() {
-    console.log('path',useRouteMatch().url)
-    const currentPage = useRouteMatch().path
-    console.log(currentPage)
-    let isNavShown = !false
-    function showNav() {isNavShown = !isNavShown}
+export default class Header extends React.Component {
+    state = {
+        isNavShown: false
+    }
 
-    return (
-        <header>
-            <section>
-                <button>+</button>
-                <h1>POLYPERC</h1>
-                <button onClick={showNav}><FontAwesomeIcon icon="bars" /></button>
-                {isNavShown && <Nav />}
-            </section>
-            <section >
-                {currentPage.includes('workspace') && <SearchBar />}
-                <ControlPanel />
-            </section>
-        </header>
-    )
+    showNav =()=> {this.setState({isNavShown: !this.state.isNavShown})}
+    hideNav =()=> {this.setState({isNavShown: false})}
+    
+    render(){
+        return (
+            <>  
+                <div className="banner">
+                    <Route
+                        path={['/workspace','/projects','/users']}
+                        render={()=>{
+                            return (
+                                <button id="new" className="main-btn">+</button>
+                            )
+                        }}
+                    ></Route>
+                    <h1>POLYPERC</h1>
+                    <button id="hamburger" className="main-btn" 
+                        onClick={this.showNav}><FontAwesomeIcon icon="bars" /></button>
+                        {this.state.isNavShown && <Nav hideNav={this.hideNav}/>}
+                </div>
+                <Route 
+                    path={['/workspace','/projects','/users']}
+                    component={ControlPanel}>
+                </Route>
+            </>
+        )
+    
+    }
 }

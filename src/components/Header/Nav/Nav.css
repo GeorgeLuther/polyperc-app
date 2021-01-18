@@ -1,0 +1,21 @@
+nav {
+    position: fixed;
+    top: 62px;
+    right: 0;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    background-color: #22160B;
+    border-bottom: solid #513522 2px;
+    border-left: solid #513522 2px;
+    border-radius: 0 0 0 15px;
+}
+a, a:visited {
+    color: #ffc655;
+    padding: 8px;
+    text-decoration: none;
+}
+a:hover {
+    color: #ffe4ad;
+}

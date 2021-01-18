@@ -1,0 +1,12 @@
+#search {
+    background: none;
+    border-radius: 40px;
+}
+#search-input {
+    width: 160px;
+    overflow: hidden;
+    
+    color: #ffc655;
+    background: none;
+
+}

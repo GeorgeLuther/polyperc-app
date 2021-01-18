@@ -1,10 +1,12 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouteMatch } from 'react-router-dom'
+import './ControlPanel.css'
+import SearchSort from './SearchSort/SearchSort'
 
 export default function ControlPanel() {
     return (
-        <section>
+        <div className="control-panel">
+            <SearchSort />
             <div className="global-transport">
                 <button className="panel-btn" id="loop"><FontAwesomeIcon icon="sync-alt"/></button>
                 <button className="panel-btn" id="back"><FontAwesomeIcon icon="backward"/></button>
@@ -18,9 +20,9 @@ export default function ControlPanel() {
                 </div>
                 <div>
                     <input id="global-volume-slider" type="range"/>
-                    <input className="panel-btn" id="global-tempo" placeholder="120 bpm"></input>
+                    <input className="panel-btn" id="global-tempo" defaultValue="120 bpm"></input>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
