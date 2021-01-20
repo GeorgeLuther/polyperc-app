@@ -1,7 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SearchBar.css'
-import { faTemperatureHigh } from '@fortawesome/free-solid-svg-icons'
 
 export default class SearchBar extends React.Component {
     state={
