@@ -1,0 +1,35 @@
+.sequencer {
+    background-color: lightgray;
+    border: solid darkgray 1px;
+    display: flex;
+    flex-grow: 1;
+    margin: 0 6px;
+    border-radius: 4px;
+}
+.beat {
+    margin: 2px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    height: 27px;
+    background-color: grey;
+    border: solid lightgray 2px;
+    border-radius: 4px;
+    display: flex;
+    flex-grow: 1;
+
+}
+.beat:checked {
+    background-color: black;
+}
+.beat:focus{
+    border:2px solid gray;
+}
+.beat:active, .beat:checked:active{
+    border:2px solid white;
+}
+.beat:hover {
+    background-color: white;
+}

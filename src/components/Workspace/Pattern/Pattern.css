@@ -1,0 +1,55 @@
+.pattern {
+    background-color: rgb(235, 235, 235);
+    padding: 8px;
+    margin-top: 16px;
+    max-width: 90vw;
+    border-radius: 8px;
+}
+.pattern-editor, .pattern-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.name-input {
+    font-size: 22px;
+    text-align: center;
+    background-color:rgb(235, 235, 235);
+    border: none;
+    width: 50%;
+}
+.pattern button {
+    width: 36px;
+    height: 34px;
+    border: none;
+    border-radius: 4px;
+}
+.delete-btn {
+    background-color: rgb(255, 134, 134);
+}
+.pattern button:hover, .name-input:hover {
+    border: solid grey 1px;
+    border-radius: 4px;
+}
+.expanded {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.expanded div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 4px;
+    flex-wrap: wrap;
+}
+.expanded button {
+    width: 22px;
+    height: 22px;
+}
+#reverse, #opposite {
+    border-radius: 20px;
+}
+.solo-active {
+    background-color: rgb(209, 209, 255);
+}

@@ -2,28 +2,67 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './TempoVolume.css'
 import * as Tone from 'tone'
-
+import { masterVolume } from '../../../../utils/audio'
 export default class TempoVolume extends Component {
-
-   
-    gainNode =(e) => {
-        const gainNode = new Tone.Gain(0).toDestination()
-
-        Tone.Destination.connect(gainNode)
+    state={
+        isVolumeSliderShown: false,
+        isTempoSliderShown: false,
+        tempo: 120,
+        volume: -6,
     }
-    
+    showVolumeSlider=()=>{
+        this.setState({isVolumeSliderShown: !this.state.isVolumeSliderShown})
+    }
+    handleVolumeSlider=(e)=>{
+        console.log(e.target.value)
+        masterVolume.volume.value = (e.target.value)
+    }
+    showTempoSlider=()=>{
+        this.setState({isTempoSliderShown: !this.state.isTempoSliderShown})
+    }
+    handleSetTempo=(e)=>{
+        this.setState({tempo: e.target.value})
+        Tone.Transport.bpm.value = e.target.value
+    }
     render() {
+        
         return (
             <div className="global-tempo-volume">
                 <div>
-                    <input id="global-volume-slider" type="range"/>
-                    <button onClick={this.gainNode} className="panel-btn" id="global-volume"><FontAwesomeIcon icon="volume-up"/></button>
+                    {this.state.isVolumeSliderShown && 
+                    <input 
+                        id="global-volume-slider" 
+                        type="range" 
+                        min={-60}
+                        max={0}
+                        defaultValue={this.state.volume}
+                        onChange={this.handleVolumeSlider}
+                    />}
+                    <button 
+                        onClick={this.showVolumeSlider} 
+                        className="panel-btn" 
+                        id="global-volume">
+                            <FontAwesomeIcon icon="volume-up"/>
+                    </button>
                 </div>
                 <div>
-                    <input id="global-volume-slider" type="range" />
+                    {this.state.isTempoSliderShown &&
+                    <input 
+                        id="global-tempo-slider" 
+                        type="range" 
+                        min={30}
+                        max={300}
+                        value={this.state.tempo}
+                        onChange={this.handleSetTempo}
+                    />}
                     
-                    <label className='bpm-label'>
-                    <input className="panel-btn" id="global-tempo" defaultValue="120" min="30" max="400"></input>
+                    <label className='bpm-label' onClick={this.showTempoSlider}>
+                        <input 
+                            className="panel-btn" 
+                            id="global-tempo" 
+                            value={this.state.tempo}
+                            onChange={this.handleSetTempo}
+                        ></input>
                     bpm
                     </label>
                 </div>

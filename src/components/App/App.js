@@ -11,8 +11,7 @@ class App extends React.Component {
 
     //Web Audio Worker has a security feature (in Chrome) that requires user input before starting audio context
     document.documentElement.addEventListener('mousedown', () => {
-      if (Tone.context.state !== 'running') Tone.context.resume();
-      console.log(Tone.context.state)
+      if (Tone.context.state !== 'running') Tone.start();
     });
 
     return (

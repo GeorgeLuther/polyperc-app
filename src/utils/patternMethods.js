@@ -1,4 +1,4 @@
-export default patternMethods = {
+const patternMethods = {
     pulse: {
         description: 'every beat is active (this is the only method that ignores active beats)',
         method(pattern){
@@ -117,7 +117,7 @@ export default patternMethods = {
         method(pattern){
             let o = Math.abs(pattern.active_beats)%pattern.pattern_length
             pattern.pattern = new Array(o).fill(1)
-            for (zeds = 0; zeds < (pattern.pattern_length - o); zeds++) {
+            for (let zeds = 0; zeds < (pattern.pattern_length - o); zeds++) {
                 pattern.pattern.push(0)
             }
             if (pattern.active_beats < 0) {pattern.pattern.reverse()}
@@ -132,7 +132,7 @@ export default patternMethods = {
         method(pattern){
             let o = Math.abs(pattern.active_beats)%pattern.pattern_length
             pattern.pattern = new Array(pattern.pattern_length-o).fill(0)
-            for (peds = 0; peds < (o); peds++) {
+            for (let peds = 0; peds < (o); peds++) {
                 pattern.pattern.push(1)
             }
             if (pattern.active_beats < 0) {pattern.pattern.reverse()}
@@ -179,3 +179,5 @@ export default patternMethods = {
         }
     }
 }
+
+export default patternMethods

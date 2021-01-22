@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Header.css'
+import Title from './Title/Title'
 import Nav from './Nav/Nav'
 import ControlPanel from './ControlPanel/ControlPanel'
 
@@ -26,7 +27,10 @@ export default class Header extends React.Component {
                             )
                         }}
                     ></Route>
-                    <h1>POLYPERC</h1>
+                    <Route
+                        path={'/'}
+                        component={Title} >
+                    </Route>
                     <button id="hamburger" className="main-btn" 
                         onClick={this.showNav}><FontAwesomeIcon icon="bars" /></button>
                         {this.state.isNavShown && <Nav hideNav={this.hideNav}/>}
