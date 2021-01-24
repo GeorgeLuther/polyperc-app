@@ -2,7 +2,7 @@ import React from 'react'
 import './Sequencer.css'
 export default function Sequencer(props) {
     
-    const checkboxes = props.patternArr.map((beat,idx) => {
+    const checkboxes = props.pattern.map((beat,idx) => {
         if (beat) {
             return <input 
                         key={idx} 

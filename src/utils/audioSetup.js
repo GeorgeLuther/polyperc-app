@@ -2,7 +2,9 @@ import * as Tone from 'tone';
 
 const masterVolume = new Tone.Volume().toDestination()
 
-//TODO: Dynamically get all samples from folder. 
+//TODO: Dynamically get all samples in source folder?
+//Use express.static to get samples from public folder on server?
+//Ultimately create an upload / buffer service
 
 const sampleURL="https://georgeluther.github.io/polyperc-samples/"
 

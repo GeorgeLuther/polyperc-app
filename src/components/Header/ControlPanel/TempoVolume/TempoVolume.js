@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './TempoVolume.css'
 import * as Tone from 'tone'
-import { masterVolume } from '../../../../utils/audio'
+import { masterVolume } from '../../../../utils/audioSetup'
 export default class TempoVolume extends Component {
     state={
         isVolumeSliderShown: false,

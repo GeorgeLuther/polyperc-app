@@ -1,3 +1,4 @@
+
 const patternMethods = {
     pulse: {
         description: 'every beat is active (this is the only method that ignores active beats)',
@@ -179,5 +180,4 @@ const patternMethods = {
         }
     }
 }
-
 export default patternMethods

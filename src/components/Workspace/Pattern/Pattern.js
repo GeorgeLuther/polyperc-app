@@ -2,58 +2,44 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Tone from 'tone'
 import './Pattern.css'
-import { masterVolume, samples } from '../../../utils/audio'
+import { masterVolume, samples } from '../../../utils/audioSetup'
 import { patternMethods } from '../../../utils/patternMethods'
 import Sequencer from './Sequencer/Sequencer'
 
 export default class Pattern extends Component {
     state={
         isLoaded: false,
-        isExpanded: false,
-        isSoloed: false,
-        isMuted: false,
-        isPlaying: true,
-        volume: -20,
-        pattern_length: 5,
-        patternArr: [1,0,1,1,1],
+        pattern: ''
+    }
+    componentDidMount(){
+        console.log(this.props.pattern)
+        this.setState({pattern: this.props.pattern})
+        this.initialize()
     }
     //get the pattern object via id from the server
     //set the pattern on state change
     //initialize a sampler
-    vol = new Tone.Volume(this.state.volume)
-    solo = new Tone.Solo()
-    sampler = new Tone.Sampler(
-        { 
-        "C-1": samples.kick,
-        "C#-1": samples.snare,
-        "D-1": samples.hihatC,
-        "Eb-1": samples.hihatO,
-        "E-1": samples.shaker,
-        "F-1": samples.clap,
-        "Gb-1": samples.crash,
-        "G-1": samples.ride,    
-        },
-        {onLoad: ()=>{
-            this.setState({isLoaded: true})
-        }}
-    ).chain(this.vol, this.solo, masterVolume)
-    
-    //this callback reads and performs the pattern array 
-    index = 0
-    inst="C-1"
-    playhead=(time)=> {
-        let step = this.index % this.state.patternArr.length;
-        for (let i = 0; i < this.state.patternArr.length; i++) {          
-          if (this.state.patternArr[step]) this.sampler.triggerAttackRelease(this.inst, 0.2, time);
-        }
-        this.index++;
+    initialize=()=>{
+        //create a playback instrument
+        this.vol = new Tone.Volume(this.state.volume)
+        this.solo = new Tone.Solo()
+        this.sampler = new Tone.Sampler(
+            { 
+            "C-1": samples.kick,
+            "C#-1": samples.snare,
+            "D-1": samples.hihatC,
+            "Eb-1": samples.hihatO,
+            "E-1": samples.shaker,
+            "F-1": samples.clap,
+            "Gb-1": samples.crash,
+            "G-1": samples.ride,    
+            },
+            {onLoad: ()=>{
+                this.setState({isLoaded: true})
+            }}
+        ).chain(this.vol, this.solo, masterVolume)
     }
-    
-    //Listens to transport/context time and triggers callback at interval
-    loop = new Tone.Loop((time) => {
-        this.playhead(time)
-    }, `${this.state.patternArr.length}n`)
-    
+
     //event handlers
     handleToggleStart=()=>{
         this.setState({isPlaying: !this.state.isPlaying})
@@ -87,7 +73,28 @@ export default class Pattern extends Component {
     }
 
     render() {
-        this.state.isPlaying ? this.loop.start() : this.loop.stop()
+        if (this.state.pattern !== '') {
+            console.log(this.state.pattern.pattern)
+            //this callback reads and performs the pattern array 
+            this.position = 0
+            this.inst="C-1"
+            this.realLength = this.state.pattern.pattern.length
+            this.arr = this.state.pattern.pattern
+            this.playhead=(time)=> {
+                let step = this.position % this.realLength
+                for (let i = 0; i < this.realLength; i++) {          
+                if (this.arr[step]) this.sampler.triggerAttackRelease(this.inst, 0.2, time);
+                }
+                this.position++;
+            }
+        
+            //Listens to transport/context time and triggers callback at interval
+            this.loop = new Tone.Loop((time) => {
+                this.playhead(time)
+            }, `${this.realLength}n`).start()
+
+            this.sequence = <Sequencer pattern={this.state.pattern.pattern} updateIdx={this.handleEditPattern}/>
+        }
         
         return (
             <div className="pattern">
@@ -101,8 +108,8 @@ export default class Pattern extends Component {
                     </div>
                     <div className="pattern-editor">
                         <button className="expand-btn"><FontAwesomeIcon icon={"ellipsis-v"}/></button>
-                        <Sequencer patternArr={this.state.patternArr} updateIdx={this.handleEditPattern}/>
-                        <button onClick={this.handleToggleStart}><FontAwesomeIcon icon={this.state.isPlaying ? "pause" : "play"}/></button>
+                        {this.sequence}
+                        {/* <button onClick={this.handleToggleStart}><FontAwesomeIcon icon={this.state.isPlaying ? "pause" : "play"}/></button> */}
                     </div>
                 </div>
                 <div className="expanded">
@@ -163,11 +170,11 @@ export default class Pattern extends Component {
                         </div>
                         {/* TODO: create tempo / ratio / source controls using loop.playbackRate 
                         and loop.inverval or individual synced tranports for each pattern. */}
-                        <div>
+                        {/* <div>
                             <button className="decrement-tempo-btn">-</button>
                             <input className="tempo-btn" size="7" placeholder="120 bpm"/>
                             <button className="increment-tempo-btn">+</button>
-                        </div>
+                        </div> */}
                         <div>
                             <label>
                                 volume
