@@ -20,6 +20,7 @@ export default class Pattern extends Component {
     //set the pattern on state change
     //initialize a sampler
     initialize=()=>{
+        console.log('mount')
         //create a playback instrument
         this.vol = new Tone.Volume(this.state.volume)
         this.solo = new Tone.Solo()
@@ -195,6 +196,7 @@ export default class Pattern extends Component {
     }
 
     componentWillUnmount(){
+        console.log('unmount')
         this.loop.dispose()
     }
 }

@@ -8,7 +8,7 @@ export default class TempoVolume extends Component {
         isVolumeSliderShown: false,
         isTempoSliderShown: false,
         tempo: 120,
-        volume: -6,
+        volume: -30,
     }
     showVolumeSlider=()=>{
         this.setState({isVolumeSliderShown: !this.state.isVolumeSliderShown})

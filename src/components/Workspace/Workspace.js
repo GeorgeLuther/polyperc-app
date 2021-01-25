@@ -17,18 +17,25 @@ export default class Workspace extends Component {
     }
 
     componentDidMount(){
-        PatternsApiService.getAllPatterns().then(data=> {
-            this.setState({patterns: data, loading: false})
-            console.log(this.state.loading)
-        })
+        PatternsApiService.getAllPatterns()
+            .then(data=> {
+                this.setState({patterns: data, loading: false})
+                console.log(this.state.loading)
+            })
+            .catch(err => {
+                this.setState({loading: 'no patterns'})
+                console.log(err)
+            })
     }
     render() {
-        if (this.state.loading) {
+        if (this.state.loading === 'no patterns') {
+            return <div><h2>No patterns found!</h2></div>
+        }
+        else if (this.state.loading) {
             return <div><h2>loading patterns...</h2></div>
         }
-        console.log('print')
         return (
-
+            
             <div className='workspace'>
                 {this.renderPatterns()}
             </div>
