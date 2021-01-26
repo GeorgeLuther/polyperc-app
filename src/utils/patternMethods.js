@@ -3,7 +3,7 @@ const patternMethods = {
     pulse: {
         description: 'every beat is active (this is the only method that ignores active beats)',
         method(pattern){
-            pattern.pattern = new Array(pattern.pattern_length).fill(1)
+            pattern.pattern = new Array(pattern.patternLength).fill(1)
             console.log('pulse applied')
             pattern.original_pattern = pattern.pattern
         }

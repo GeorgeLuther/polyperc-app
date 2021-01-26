@@ -8,12 +8,13 @@ import Sequencer from './Sequencer/Sequencer'
 
 export default class Pattern extends Component {
     state={
+        isSet: false,
         isLoaded: false,
-        pattern: ''
+        pattern: {}
     }
     componentDidMount(){
         console.log(this.props.pattern)
-        this.setState({pattern: this.props.pattern})
+        this.setState({pattern: this.props.pattern, isSet: true})
         this.initialize()
     }
     //get the pattern object via id from the server
@@ -43,10 +44,10 @@ export default class Pattern extends Component {
 
     //event handlers
     handleToggleStart=()=>{
-        this.setState({isPlaying: !this.state.isPlaying})
+        this.setState({pattern: {isPlaying: !this.state.pattern.isPlaying}})
     }
     handleToggleMute=()=>{
-        this.setState({isMuted: !this.state.isMuted})
+        this.setState({pattern: {isMuted: !this.state.pattern.isMuted}})
         this.loop.mute = !this.loop.mute
     }
     handleToggleSolo=()=>{
@@ -72,34 +73,10 @@ export default class Pattern extends Component {
         this.setState({patternArr: newArr})
         //TODO: trigger an API update.. use put to update who pattern entry? or patch just the array?
     }
-
-    render() {
-        if (this.state.pattern !== '') {
-            console.log(this.state.pattern.pattern)
-            //this callback reads and performs the pattern array 
-            this.position = 0
-            this.inst="C-1"
-            this.realLength = this.state.pattern.pattern.length
-            this.arr = this.state.pattern.pattern
-            this.playhead=(time)=> {
-                let step = this.position % this.realLength
-                for (let i = 0; i < this.realLength; i++) {          
-                if (this.arr[step]) this.sampler.triggerAttackRelease(this.inst, 0.2, time);
-                }
-                this.position++;
-            }
-        
-            //Listens to transport/context time and triggers callback at interval
-            this.loop = new Tone.Loop((time) => {
-                this.playhead(time)
-            }, `${this.realLength}n`).start()
-
-            this.sequence = <Sequencer pattern={this.state.pattern.pattern} updateIdx={this.handleEditPattern}/>
-        }
-        
-        return (
-            <div className="pattern">
-                <div className="condensed">
+    renderPattern=()=>{
+        if (this.state.isSet) {
+            return (<>
+            <div className="condensed">
                     <div className="pattern-main">
                         <button className="delete-btn" title="delete this pattern from the workspace"><FontAwesomeIcon icon={"times"}/></button>
                         {/* <button className="copy-btn" title="to copy click this, then the add new (+) button. to clone click this and then the fields you'd like to clone. then click the pattern that will inherit them"><FontAwesomeIcon icon={"copy"}/></button> */}
@@ -109,7 +86,7 @@ export default class Pattern extends Component {
                     </div>
                     <div className="pattern-editor">
                         <button className="expand-btn"><FontAwesomeIcon icon={"ellipsis-v"}/></button>
-                        {this.sequence}
+                        <Sequencer pattern={this.state.pattern.pattern} updateIdx={this.handleEditPattern}/>
                         {/* <button onClick={this.handleToggleStart}><FontAwesomeIcon icon={this.state.isPlaying ? "pause" : "play"}/></button> */}
                     </div>
                 </div>
@@ -191,6 +168,15 @@ export default class Pattern extends Component {
                         </div>
                     </div>  
                 </div>
+            </>)
+            return (<h2>loading pattern information...</h2>)
+        }
+    }
+    render() {
+        
+        return (
+            <div className="pattern">
+                {this.renderPattern()}
             </div>
         )
     }
