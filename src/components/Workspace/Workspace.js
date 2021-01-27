@@ -2,31 +2,30 @@ import React, { Component } from 'react'
 import './Workspace.css'
 import Pattern from './Pattern/Pattern'
 import PatternsApiService from '../../services/patterns-api-service'
-import patternMethods from '../../utils/patternMethods'
 
 export default class Workspace extends Component {
     state = {
         loading: true,
-        patterns: [],
+        ids: [],
     }
     
     renderPatterns(){
-        return this.state.patterns.map(pattern => {
-            return <Pattern key={pattern.id} pattern={pattern}/>
-            })
+        return this.state.ids.map(id => {
+            return <Pattern key={id} id={id}/>
+        })
     }
 
     componentDidMount(){
-        PatternsApiService.getAllPatterns()
+        PatternsApiService.getAllPatternIds()
             .then(data=> {
-                this.setState({patterns: data, loading: false})
-                console.log(this.state.loading)
+                this.setState({ids: data, loading: false})
             })
             .catch(err => {
                 this.setState({loading: 'no patterns'})
-                console.log(err)
+                console.log('Unable to load patterns',err)
             })
     }
+
     render() {
         if (this.state.loading === 'no patterns') {
             return <div><h2>No patterns found!</h2></div>

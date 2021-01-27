@@ -27,7 +27,6 @@ export default class Transport extends React.Component {
                     {/* <button className="panel-btn" id="forth"><FontAwesomeIcon icon="forward"/></button> */}
                 </div>)
         }
-        console.log('load')
         return (
             <div className="global-transport">
                 <h2>loading...</h2>
