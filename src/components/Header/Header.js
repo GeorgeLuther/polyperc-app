@@ -11,10 +11,10 @@ export default class Header extends React.Component {
     state = {
         isNavShown: false
     }
-
-    showNav =()=> {this.setState({isNavShown: !this.state.isNavShown})}
-    hideNav =()=> {this.setState({isNavShown: false})}
     
+    showNav=()=> {this.setState({isNavShown: !this.state.isNavShown})}
+    hideNav=()=> {this.setState({isNavShown: false})}
+
     render(){
         return (
             <>  
@@ -23,7 +23,13 @@ export default class Header extends React.Component {
                         path={['/workspace','/projects','/users']}
                         render={()=>{
                             return (
-                                <button id="new" className="main-btn">+</button>
+                                //DEPENDING ON window.location.pathname,
+                                //THIS BUTTON TRIGGERS NEW THING IN WORKSPACE
+                                <button 
+                                    id="new" 
+                                    className="main-btn"
+                                    onClick={this.props.handleAddNew}
+                                >+</button>
                             )
                         }}
                     ></Route>

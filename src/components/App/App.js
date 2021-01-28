@@ -6,7 +6,15 @@ import Workspace from '../Workspace/Workspace'
 import Table from '../Table/Table'
 import * as Tone from 'tone'
 class App extends React.Component {
+  state={
+    addNew: false
+  }
   
+  handleAddNew=()=>{
+    this.setState({addNew: true}, this.setState({addNew: false}))
+    console.log('tick, tick')
+  }
+
   render(){
 
     //Web Audio Worker has a security feature (in Chrome) that requires user input before starting audio context
@@ -17,7 +25,7 @@ class App extends React.Component {
     return (
       <>
       <header>
-        <Header />
+        <Header handleAddNew={this.handleAddNew}/>
       </header>
       <main className='App'>
         <Switch>
@@ -27,7 +35,8 @@ class App extends React.Component {
           />
           <Route 
             path={'/workspace'}
-            component={Workspace}
+            render={()=>{
+              return (<Workspace addNew={this.state.addNew}/>)}}
           />
           <Route 
             path={['/projects','/users']}

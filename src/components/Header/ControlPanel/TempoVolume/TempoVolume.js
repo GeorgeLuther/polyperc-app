@@ -7,14 +7,13 @@ export default class TempoVolume extends Component {
     state={
         isVolumeSliderShown: false,
         isTempoSliderShown: false,
-        tempo: 120,
-        volume: -30,
+        tempo: 135,
+        volume: -35,
     }
     showVolumeSlider=()=>{
         this.setState({isVolumeSliderShown: !this.state.isVolumeSliderShown})
     }
     handleVolumeSlider=(e)=>{
-        console.log(e.target.value)
         masterVolume.volume.value = (e.target.value)
     }
     showTempoSlider=()=>{

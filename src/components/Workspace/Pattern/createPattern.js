@@ -4,7 +4,6 @@ const createPattern = {
         description: 'every beat is active (this is the only method that ignores active beats)',
         method(pattern){
             pattern.pattern = new Array(pattern.patternLength).fill(1)
-            console.log('pulse applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -24,7 +23,6 @@ const createPattern = {
                 index = (L-(absT%L))
                 pattern.pattern[index] = 1
             }
-            console.log('beat applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -42,7 +40,6 @@ const createPattern = {
             pattern.pattern[slotArray[myRand]]=1
             slotArray.splice(myRand, 1)
             }
-            console.log('random applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -58,7 +55,6 @@ const createPattern = {
                 previous = x
             }
             pattern.pattern = newPattern
-            console.log('even applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -78,7 +74,6 @@ const createPattern = {
                 index = (L-(absT%L))
                 pattern.pattern[0] = 1
             }
-            console.log('periodic applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -93,7 +88,6 @@ const createPattern = {
                 }
             }
             if (pattern.activeBeats < 0) {pattern.pattern.reverse()}
-            console.log('cyclic applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -107,7 +101,6 @@ const createPattern = {
                 pattern.pattern[point-1] = 1
             }
             if (pattern.activeBeats < 0) {pattern.pattern.reverse()}
-            console.log('subdivision applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -122,7 +115,6 @@ const createPattern = {
             if (pattern.activeBeats < 0) {pattern.pattern.reverse()}
             if (o===0) {pattern.pattern = new Array(pattern.patternLength).fill(1)}
             if (pattern.activeBeats===0) {pattern.pattern = new Array(pattern.patternLength).fill(0)}
-            console.log('first applied')
             pattern.originalPattern = pattern.pattern
         }
     },
@@ -137,7 +129,6 @@ const createPattern = {
             if (pattern.activeBeats < 0) {pattern.pattern.reverse()}
             if (o===0) {pattern.pattern = new Array(pattern.patternLength).fill(1)}
             if (pattern.activeBeats===0) {pattern.pattern = new Array(pattern.patternLength).fill(0)}
-            console.log('last applied')
             pattern.originalPattern = pattern.pattern
         }
     },

@@ -18,7 +18,6 @@ const alterPattern = {
             n = absK%L
             }
             pattern.pattern = pattern.originalPattern.slice(n).concat(pattern.originalPattern.slice(0, n))
-            console.log(`rotation ${pattern.rotation} applied`)
         }
     },
     opposite: {

@@ -8,6 +8,7 @@ export default class Workspace extends Component {
         loading: true,
         ids: [],
     }
+    
     handleDeletePattern=(id)=>{
         PatternsApiService.deletePattern(id)
         this.setState({ids: this.state.ids.filter(pat => pat !== id)})
@@ -26,9 +27,6 @@ export default class Workspace extends Component {
     componentDidMount(){
         this.getAllIds()
     }
-    // componentDidUpdate(){
-    //     this.getAllIds()
-    // }
 
     render() {
         

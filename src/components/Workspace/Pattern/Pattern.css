@@ -25,7 +25,8 @@
     border-radius: 4px;
 }
 .delete-btn {
-    background-color: rgb(255, 134, 134);
+    background-color: rgb(126, 0, 0);
+    color: white;
 }
 .pattern button:hover, .name-input:hover {
     border: solid grey 2px;
