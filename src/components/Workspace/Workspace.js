@@ -8,14 +8,11 @@ export default class Workspace extends Component {
         loading: true,
         ids: [],
     }
-    
-    renderPatterns(){
-        return this.state.ids.map(id => {
-            return <Pattern key={id} id={id}/>
-        })
+    handleDeletePattern=(id)=>{
+        PatternsApiService.deletePattern(id)
+        this.setState({ids: this.state.ids.filter(pat => pat !== id)})
     }
-
-    componentDidMount(){
+    getAllIds=()=>{
         PatternsApiService.getAllPatternIds()
             .then(data=> {
                 this.setState({ids: data, loading: false})
@@ -26,7 +23,15 @@ export default class Workspace extends Component {
             })
     }
 
+    componentDidMount(){
+        this.getAllIds()
+    }
+    // componentDidUpdate(){
+    //     this.getAllIds()
+    // }
+
     render() {
+        
         if (this.state.loading === 'no patterns') {
             return <div><h2>No patterns found!</h2></div>
         }
@@ -36,7 +41,13 @@ export default class Workspace extends Component {
         return (
             
             <div className='workspace'>
-                {this.renderPatterns()}
+                {this.state.ids.map((id) => (                    
+                    <Pattern 
+                        key={id} 
+                        id={id} 
+                        handleDeletePattern={this.handleDeletePattern}
+                    />
+                ))}
             </div>
         )
     }

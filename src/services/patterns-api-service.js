@@ -1,10 +1,9 @@
-//get all users
-import TokenService from '../services/token-service'
-import config from '../config'
+// import TokenService from '../services/token-service'
+import API_ENDPOINT from '../config'
 
 const PatternsApiService = {
   getAllPatterns() {
-    return fetch(`${config.API_ENDPOINT}/patterns`, {
+    return fetch(`${API_ENDPOINT}/patterns`, {
       headers: {
         'content-type':'application/json'
       },
@@ -16,7 +15,7 @@ const PatternsApiService = {
       )
   },
   getAllPatternIds(){
-    return fetch(`${config.API_ENDPOINT}/patterns?columns=id`, {
+    return fetch(`${API_ENDPOINT}/patterns?columns=id`, {
       headers: {
         'content-type':'application/json'
       },
@@ -28,7 +27,7 @@ const PatternsApiService = {
       )
   },
   getPatternById(id){
-    return fetch(`${config.API_ENDPOINT}/patterns/${id}`,{
+    return fetch(`${API_ENDPOINT}/patterns/${id}`,{
       method: 'GET',
       headers: {
         'content-type':'application/json'
@@ -41,7 +40,7 @@ const PatternsApiService = {
     )
   },
   deletePattern(id){
-    return fetch(`${config.API_ENDPOINT}/patterns/${id}`,{
+    return fetch(`${API_ENDPOINT}/patterns/${id}`,{
       method: 'DELETE',
       headers: {
         'content-type':'application/json'
@@ -49,7 +48,7 @@ const PatternsApiService = {
     })
   },
   newEmptyPattern(){
-    return fetch(`${config.API_ENDPOINT}/patterns`,{
+    return fetch(`${API_ENDPOINT}/patterns`,{
       method: 'POST',
       headers: {
         'content-type':'application/json'
@@ -57,11 +56,12 @@ const PatternsApiService = {
     })
   },
   replacePattern(id, pattern){
-    return fetch(`${config.API_ENDPOINT}/patterns/${id}`,{
+    return fetch(`${API_ENDPOINT}/patterns/${id}`,{
       method: 'PUT',
       headers: {
         'content-type':'application/json'
-      },//body = pattern
+      },
+      body: JSON.stringify(pattern)
     })
   }
 }
