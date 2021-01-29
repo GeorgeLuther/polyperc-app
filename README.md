@@ -41,4 +41,14 @@ I.E. 0,0,1 becomes 1,0,0
 
 ## Architecture
 
-Polyperc is a RESTful app made using Javascript, CSS, HTML, React, Tone.js, on the front-end. The backend is also made in Javascript, using Express, Knex, postgreSQL and xss. The next version will add user accounts, project management, and independent transport controls to efficiently manipulate the metric relationships of patterns in a project. Eventually it should be possible to sync Polyperc to an external MIDI clock as well as other MIDI and audio functions like uploading samples. The long term goal of this project is as part of a collaborative music sandbox where user can have as much or as little control over the creation process as possible. Users will collaborate with each other as well as with the program itself. Eventually the program should be able to generate new beats and compositions by single button press. Users will be able to use methods like the rhythm methods shown here as well as higher level actions developed based on usage analysis and machine learning.
+Polyperc is a RESTful app made using Javascript, CSS, HTML, React, Tone.js, on the front-end. The backend is also made in Javascript, using Express, Knex, postgreSQL and xss. The next version will add user accounts, project management, and independent transport controls for the pattern component to efficiently manipulate the metric relationships of patterns in a project. Eventually it should be possible to sync Polyperc to an external MIDI clock as well as other MIDI and audio functions like uploading samples. The long term goal of this project is as part of a collaborative music sandbox where user can have as much or as little control over the creation process as possible. Users will collaborate with each other as well as with the program itself. Eventually the program should be able to generate new beats and compositions by single button press. Users will be able to use methods like the rhythm methods shown here, accessing material via tagging systems, and higher level actions developed based on usage analysis and machine learning.
+
+## Brainstorming Documents
+
+[Initial Concept](https://docs.google.com/document/d/1qna9LV6pVFz6dmoLarC0cDfFT0yUagPQ5ojL8ECmYhE/edit?usp=sharing)
+
+[Screen Inventory](https://docs.google.com/document/d/1pEVZTJ3tou26MZPpC_DQLPXUGQxN-8BMiv_HcBHnazQ/edit)
+
+[Related concept that will eventually merge](https://docs.google.com/document/d/1aCruQvra4gdVxM3bSFUnUqEJpPABJFGzBNuV2EBoTNo/edit?usp=sharing)
+
+### Please feel free to add issues
