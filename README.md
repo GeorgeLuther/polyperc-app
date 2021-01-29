@@ -2,9 +2,13 @@
 
 [Play with the live app](https://polyperc-app.vercel.app "click here to explore Polyperc")
 
+[View the back end git](https://github.com/GeorgeLuther/polyperc-api)
+
 # About Polyperc
 
 Polyperc is a web app that allows users to generate and manipulate rhythmic patterns. This program can be used like a traditional sequencer, where a grid of rhythms can be turned on and off. However, what makes the app useful are the variety of pattern generation methods that can be selected to instantly create a patterns from a pattern length and number of active beats.
+
+![polyperc-screenshot.png](https://georgeluther.github.io/polyperc-samples/polyperc-screenshot.png)
 
 ## Transport Functions
 
