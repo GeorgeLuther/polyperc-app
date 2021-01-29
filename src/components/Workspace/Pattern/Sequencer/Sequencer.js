@@ -8,8 +8,9 @@ export default function Sequencer({pattern, handleEditPattern, name}) {
                 <input 
                     key={uuidv4()}
                     name={idx}
+                    aria-label={`${name}-beat-${idx}`}
                     type={"checkbox"} 
-                    onChange={handleEditPattern} 
+                    onChange={handleEditPattern}
                     className="beat" defaultChecked={beat === 1}>
                 </input>)
             )}

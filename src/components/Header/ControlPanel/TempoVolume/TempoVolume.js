@@ -34,12 +34,14 @@ export default class TempoVolume extends Component {
                         type="range" 
                         min={-60}
                         max={0}
+                        aria-label="volume slider" 
                         defaultValue={this.state.volume}
                         onChange={this.handleVolumeSlider}
                     />}
                     <button 
                         onClick={this.showVolumeSlider} 
-                        className="panel-btn" 
+                        className="panel-btn"
+                        aria-label="volume control" 
                         id="global-volume">
                             <FontAwesomeIcon icon="volume-up"/>
                     </button>
@@ -51,6 +53,7 @@ export default class TempoVolume extends Component {
                         type="range" 
                         min={30}
                         max={300}
+                        aria-label="tempo slider" 
                         value={this.state.tempo}
                         onChange={this.handleSetTempo}
                     />}
@@ -59,6 +62,7 @@ export default class TempoVolume extends Component {
                         <input 
                             className="panel-btn" 
                             id="global-tempo" 
+                            aria-label="tempo control" 
                             value={this.state.tempo}
                             onChange={this.handleSetTempo}
                         ></input>

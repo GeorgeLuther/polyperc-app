@@ -4,18 +4,11 @@ import ReactDOM from 'react-dom'
 
 import renderer from 'react-test-renderer'
 
-import { MemoryRouter} from 'react-router-dom'
+import ClickOutsideWrapper from './ClickOutsideWrapper'
 
-import App from './App'
-
-import Tone from 'tone'
-
-jest.mock('Tone')
 
 it('renders without crashing',()=>{
   const div = document.createElement('div')
-  ReactDOM.render(<MemoryRouter>
-    <App/>
-    </MemoryRouter>,div)
+  ReactDOM.render(<ClickOutsideWrapper><div></div></ClickOutsideWrapper>,div)
   ReactDOM.unmountComponentAtNode(div)
 })

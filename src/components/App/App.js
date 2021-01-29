@@ -5,19 +5,30 @@ import Landing from '../Landing/Landing'
 import Workspace from '../Workspace/Workspace'
 import Table from '../Table/Table'
 import * as Tone from 'tone'
+// import PatternsApiService from '../../services/patterns-api-service';
+
 class App extends React.Component {
+  //move ids here
+  //or move all pattern objects in an array
+  // and handlers here and put them in 
+  // if so how do I avoid the added code of 
+  //mapping functions bc of nested state?
+  
   state={
-    addNew: false
+    ids: []
   }
   
-  handleAddNew=()=>{
-    this.setState({addNew: true}, this.setState({addNew: false}))
-    console.log('tick, tick')
-  }
+  // handleAddNew=()=>{
+  //   // the add button has different functionality depending on the page
+  //   if (window.location.pathname === '/workspace') {
+  //       PatternsApiService.newEmptyPattern()
+  //   }
+  // }
 
   render(){
 
-    //Web Audio Worker has a security feature (in Chrome) that requires user input before starting audio context
+    //Web Audio Worker has a security feature (in Chrome):
+    // requires user input before starting audio context
     document.documentElement.addEventListener('mousedown', () => {
       if (Tone.context.state !== 'running') Tone.start();
     });
@@ -35,8 +46,9 @@ class App extends React.Component {
           />
           <Route 
             path={'/workspace'}
-            render={()=>{
-              return (<Workspace addNew={this.state.addNew}/>)}}
+            component={Workspace}
+            // render={()=>{
+            //   return (<Workspace addNew={this.state.addNew}/>)}}
           />
           <Route 
             path={['/projects','/users']}

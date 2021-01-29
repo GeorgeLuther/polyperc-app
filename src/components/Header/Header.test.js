@@ -5,17 +5,12 @@ import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
 
 import Header from './Header'
-
-import * as Tone from './fakeTone'
-
-//1) smoke tests confirm that a component will render without crashing.
-//we'll put a dom element <div> into the component and insure that it works.
-async () => {
-  global.TONE_SILENCE_LOGGING = true;
-};
+import { MemoryRouter} from 'react-router-dom'
 
 it('renders without crashing',()=>{
   const div = document.createElement('div')
-  ReactDOM.render(<Header/>,div)
+  ReactDOM.render(<MemoryRouter>
+      <Header/>
+      </MemoryRouter>,div)
   ReactDOM.unmountComponentAtNode(div)
 })

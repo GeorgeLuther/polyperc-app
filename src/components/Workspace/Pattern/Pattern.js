@@ -241,6 +241,7 @@ export default class Pattern extends Component {
                     <div className="pattern-main">
                         <button 
                             className="delete-btn" 
+                            aria-label="delete pattern"
                             name={this.props.id}
                             title="delete this pattern from the workspace"
                             onClick={()=> this.props.handleDeletePattern(this.props.id)}>
@@ -249,6 +250,7 @@ export default class Pattern extends Component {
                         {/* <button className="copy-btn" title="to copy click this, then the add new (+) button. to clone click this and then the fields you'd like to clone. then click the pattern that will inherit them"><FontAwesomeIcon icon={"copy"}/></button> */}
                         <input 
                             className="name-input"
+                            aria-label="pattern name"
                             defaultValue={this.state.name}
                             placeholder="pattern name" 
                             title="input a name for this pattern"
@@ -256,19 +258,22 @@ export default class Pattern extends Component {
                         ></input>
                         <button 
                             onClick={this.handleToggleSolo} 
+                            aria-label="isolate this pattern"
                             className={`solo-btn ${this.state.isSoloed ? "solo-active" : ""}`} 
                             title="solo this pattern (mutes all other patterns)"
                         >S
                         </button>
                         <button 
                             onClick={this.handleToggleMute} 
+                            aria-label="mute/unmute pattern"
                             className="volume-btn" 
                             title="mute/unmute pattern">
                             <FontAwesomeIcon icon={this.state.isMuted ? "volume-mute" : "volume-up"} />
                         </button>
                     </div>
                     <div className="pattern-editor">
-                        <button 
+                        <button
+                            aria-label="expand all options" 
                             className="expand-btn"
                             onClick={this.handleToggleExpand}
                             title="show all options..."
@@ -344,11 +349,13 @@ export default class Pattern extends Component {
                     <div>
                         <label>total beats
                         <div>
-                            <button 
+                            <button
+                                aria-label="subtract one beat from pattern length" 
                                 className="decrement-bar-length-btn"
                                 onClick={this.handleDecrementLength}
                             >-</button>
-                            <input 
+                            <input
+                                aria-label="enter pattern length" 
                                 placeholder="bar length" 
                                 size="9" 
                                 className="bar-length-input"
@@ -356,6 +363,7 @@ export default class Pattern extends Component {
                                 onChange={this.handleSetLength}
                             />
                             <button 
+                                aria-label="add one beat to pattern length"
                                 className="increment-bar-length-btn"
                                 onClick={this.handleIncrementLength}
                             >+</button>
@@ -364,17 +372,20 @@ export default class Pattern extends Component {
                         <label>active beats
                         <div>
                             <button 
+                                aria-label="subtract one beat active beat"
                                 className="decrement-onset-btn"
                                 onClick={this.handleDecrementActiveBeats}
                             >-</button>
                             <input 
+                                aria-label="enter number of beat active beats"
                                 placeholder="onset(s)" 
                                 size="6" 
                                 className="onsets-input"
                                 value={this.state.activeBeats}
                                 onChange={this.handleSetActiveBeats}
                             />
-                            <button 
+                            <button
+                                aria-label="add one beat active beat" 
                                 className="increment-onsets-btn"
                                 onClick={this.handleIncrementActiveBeats}
                             >+</button>
@@ -382,11 +393,15 @@ export default class Pattern extends Component {
                         </label>
                         <label>rotation
                         <div>
-                            <button 
+                            <button
+                                aria-label="rotate pattern left by one"
+                                title="rotate pattern left by one" 
                                 className="decrement-rotation-btn"
                                 onClick={this.handleDecrementRotation}
                             >-</button>
                             <input 
+                                aria-label="enter pattern rotation"
+                                title="enter pattern rotation"
                                 placeholder="rotation" 
                                 size="7" 
                                 className="rotation-input"
@@ -394,6 +409,8 @@ export default class Pattern extends Component {
                                 onChange={this.handleSetRotation}
                             />
                             <button 
+                                aria-label="rotate pattern right by one"
+                                title="rotate pattern right by one" 
                                 className="increment-rotation-btn"
                                 onClick={this.handleIncrementRotation}
                             >+</button>

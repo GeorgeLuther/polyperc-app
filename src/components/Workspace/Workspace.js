@@ -27,7 +27,11 @@ export default class Workspace extends Component {
     componentDidMount(){
         this.getAllIds()
     }
-
+    //temporary measure for live updates
+    // componentDidUpdate(){
+    //     this.getAllIds()
+    // }
+    
     render() {
         
         if (this.state.loading === 'no patterns') {

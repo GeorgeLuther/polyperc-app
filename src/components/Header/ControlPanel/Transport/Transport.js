@@ -12,7 +12,9 @@ export default class Transport extends React.Component {
         Tone.Transport.toggle()
         this.setState({isPlaying: !this.state.isPlaying})
     }
+
     componentDidMount(){
+    //put this elsewhere?
         Tone.loaded().then(() => {
             this.setState({isReady: true})
         });
@@ -23,7 +25,7 @@ export default class Transport extends React.Component {
                 <div className="global-transport">
                     {/* <button className="panel-btn" id="loop"><FontAwesomeIcon icon="sync-alt"/></button>
                     <button className="panel-btn" id="back"><FontAwesomeIcon icon="backward"/></button> */}
-                    <button className="panel-btn" id="play" onClick={this.globalPlay}><FontAwesomeIcon icon={this.state.isPlaying ? "pause" : "play"}/></button>
+                    <button className="panel-btn" id="play" onClick={this.globalPlay} aria-label="play/pause"><FontAwesomeIcon icon={this.state.isPlaying ? "pause" : "play"}/></button>
                     {/* <button className="panel-btn" id="forth"><FontAwesomeIcon icon="forward"/></button> */}
                 </div>)
         }
