@@ -22,14 +22,14 @@
 
 }
 .beat:checked {
-    background-color: black;
+    background-color: rgb(77, 33, 20);
 }
 .beat:focus{
     border:2px solid gray;
 }
 .beat:active, .beat:checked:active{
-    border:2px solid white;
+    border:2px solid rgb(1, 212, 107);
 }
 .beat:hover {
-    background-color: white;
+    background-color: rgb(211, 152, 15);
 }
