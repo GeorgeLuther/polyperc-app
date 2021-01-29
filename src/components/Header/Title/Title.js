@@ -18,7 +18,7 @@ export default class Title extends Component {
         this.setState({title: e.target.value})
     }
     render() {
-        if (!this.props.location.pathname.includes('workspace')) {
+        if (!window.location.pathname.includes('workspace')) {
             <h1>POLYPERC</h1>
         }
         if (!this.state.isEditing) {

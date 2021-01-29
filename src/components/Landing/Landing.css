@@ -47,3 +47,7 @@
     background-image: url('../../assets/cassette.jpg');
     background-size: cover;
 }
+#start:hover {
+    border:2px solid #ffc655;
+    color: #4c228f;
+}

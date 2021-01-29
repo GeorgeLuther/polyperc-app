@@ -3,8 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import renderer from 'react-test-renderer'
-
-import App from './App'
+import { BrowserRouter as Router } from 'react-router-dom';
+import Nav from './Nav'
 
 //1) smoke tests confirm that a component will render without crashing.
 //we'll put a dom element <div> into the component and insure that it works.
@@ -14,6 +14,8 @@ async () => {
 
 it('renders without crashing',()=>{
   const div = document.createElement('div')
-  ReactDOM.render(<App/>,div)
+  ReactDOM.render(<Router>
+                    <Nav/>
+                  </Router>,div)
   ReactDOM.unmountComponentAtNode(div)
 })
