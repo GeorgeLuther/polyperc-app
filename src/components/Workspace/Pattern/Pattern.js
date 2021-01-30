@@ -107,7 +107,9 @@ export default class Pattern extends Component {
     }
 
     applyPatternFuncs=(newState)=>{
-        
+        console.log(newState.pattern)
+        this.loop.interval = `${newState.patternLength}n`
+        console.log('interval set',newState.patternLength)
         createPattern[newState.method].method(newState)
 
         if (newState.isReversed) {
@@ -182,7 +184,7 @@ export default class Pattern extends Component {
         this.applyPatternFuncs(newState)
     }
     handleSetLength=(e)=>{
-        if (e.target.value) {
+        if (e.target.value < 41) {
             let newState = {...this.state}
             newState.patternLength = e.target.value
             this.applyPatternFuncs(newState)    
@@ -200,7 +202,7 @@ export default class Pattern extends Component {
         this.applyPatternFuncs(newState)
     }
     handleSetActiveBeats=(e)=>{
-        if (e.target.value) {
+        if (e.target.value < 41) {
             let newState = {...this.state}
             newState.activeBeats = e.target.value
             this.applyPatternFuncs(newState)    
@@ -361,6 +363,8 @@ export default class Pattern extends Component {
                                 className="bar-length-input"
                                 value={this.state.patternLength}
                                 onChange={this.handleSetLength}
+                                max={30}
+                                min={-20}
                             />
                             <button 
                                 aria-label="add one beat to pattern length"
@@ -383,6 +387,8 @@ export default class Pattern extends Component {
                                 className="onsets-input"
                                 value={this.state.activeBeats}
                                 onChange={this.handleSetActiveBeats}
+                                max={40}
+                                min={1}
                             />
                             <button
                                 aria-label="add one beat active beat" 
