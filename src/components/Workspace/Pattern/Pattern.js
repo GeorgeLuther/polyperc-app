@@ -107,6 +107,7 @@ export default class Pattern extends Component {
     }
 
     applyPatternFuncs=(newState)=>{
+        
         this.loop.interval = `${newState.patternLength}n`
         
         createPattern[newState.method].method(newState)
@@ -211,18 +212,22 @@ export default class Pattern extends Component {
     handleDecrementRotation=()=>{
         let newState = {...this.state}
         newState.rotation = newState.rotation-1
-        this.applyPatternFuncs(newState)
+        alterPattern.rotation.method(newState)
+        this.setState(newState,()=>this.updateAPI())
     }
     handleIncrementRotation=()=>{
         let newState = {...this.state}
         newState.rotation = newState.rotation+1
-        this.applyPatternFuncs(newState)
+        alterPattern.rotation.method(newState)
+        this.setState(newState,()=>this.updateAPI())
+
     }
     handleSetRotation=(e)=>{
         if (e.target.value) {
             let newState = {...this.state}
             newState.rotation = Number(e.target.value)
-            this.applyPatternFuncs(newState)    
+            alterPattern.rotation.method(newState)
+            this.setState(newState,()=>this.updateAPI())
         }
     }
     handleChangeVolume=(e)=>{
@@ -232,6 +237,7 @@ export default class Pattern extends Component {
 
 
     render() {
+        
         return (
             <div className="pattern">
                 {!this.state.isSet && <h2>Loading pattern...</h2>}
